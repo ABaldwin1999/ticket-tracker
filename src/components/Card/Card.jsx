@@ -20,18 +20,29 @@ const Card = (props) => {
     setNewArr([...newArr, employee]);
   };
 
-  const searchEmployee = () => {
+  const searchCards = () => {
     const searchEmployee = document.getElementById("searchEmployees");
+    const searchSelector = document.getElementById("searchSelector");
     if(searchEmployee.value===""){
       setNewArr(teamArr);
     }
     else{
-      const matchingEmployee = newArr.filter((team) => (
-        team.name.includes(searchEmployee.value)
-      ));
-      setNewArr(matchingEmployee);
+      searchCardsBySelection(searchSelector, searchEmployee);
     }
   };
+
+  const searchCardsBySelection =(searchSelector,searchEmployee)=>{
+      let matchingEmployee =[];
+      if(searchSelector.value==="name"){
+        matchingEmployee = newArr.filter((team) => (
+        team.name.includes(searchEmployee.value)));
+      }
+      else{
+        matchingEmployee = newArr.filter((team) => (
+          team.role.includes(searchEmployee.value)));
+      }
+    setNewArr(matchingEmployee);
+  }
 
   const cardListJSX = newArr.map((team, index) => (
     <div key={index} className="cards_content">
@@ -43,8 +54,15 @@ const Card = (props) => {
 
   return (
     <div>
-      <input onInput={searchEmployee} id="searchEmployees" type="text" />
-      <div>
+      <div className="searchBar">
+        <h2>Search by</h2>
+        <select id="searchSelector"> 
+          <option value="name">name</option>
+          <option value="role">role</option>
+        </select>
+        <input onInput={searchCards} id="searchEmployees" type="text" />
+      </div>
+      <div className="createNewEmployeeBar">
         <div className="newEmployee">
           <h2>New Employee Name</h2>
           <input id="newEmployeeName" type="text" />
