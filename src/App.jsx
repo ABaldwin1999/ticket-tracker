@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
         <Headline/>
       </header>
-     <Card myTeam={team}/> 
+     <Card teamArr={team}/> 
     </div>
   );
 }
