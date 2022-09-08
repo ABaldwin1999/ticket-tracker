@@ -20,6 +20,19 @@ const Card = (props) => {
     setNewArr([...newArr, employee]);
   };
 
+  const searchEmployee = () => {
+    const searchEmployee = document.getElementById("searchEmployees");
+    if(searchEmployee.value===""){
+      setNewArr(teamArr);
+    }
+    else{
+      const matchingEmployee = newArr.filter((team) => (
+        team.name.includes(searchEmployee.value)
+      ));
+      setNewArr(matchingEmployee);
+    }
+  };
+
   const cardListJSX = newArr.map((team, index) => (
     <div key={index} className="cards_content">
       <h3 className="card_content">Name: {team.name}</h3>
@@ -30,7 +43,7 @@ const Card = (props) => {
 
   return (
     <div>
-      <input id="searchEmployees" type="text" />
+      <input onInput={searchEmployee} id="searchEmployees" type="text" />
       <div>
         <div className="newEmployee">
           <h2>New Employee Name</h2>
