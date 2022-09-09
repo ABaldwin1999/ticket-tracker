@@ -2,10 +2,18 @@ import React from "react";
 import "./Card.scss";
 import { useState } from "react";
 import Counter from "../Counter/Counter";
+import NewEmployeeForm from "../NewEmployeeForm/NewEmployeeForm";
+import TickerButton from "../TickerButton/TickerButton";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Card = (props) => {
   const { teamArr } = props;
   const [newArr, setNewArr] = useState(teamArr);
+  const [showNewEmployeeForm, setShowNewEmployeeForm] = useState(false);
+
+  const toggleNewEmployeeForm = ()=>{
+    setShowNewEmployeeForm(!showNewEmployeeForm);
+  }
 
   const addNewEmployee = () => {
     const newEmployeeName = document.getElementById("newEmployeeName");
@@ -35,11 +43,11 @@ const Card = (props) => {
       let matchingEmployee =[];
       if(searchSelector.value==="name"){
         matchingEmployee = newArr.filter((team) => (
-        team.name.includes(searchEmployee.value)));
+        team.name.toLowerCase().includes(searchEmployee.value.toLowerCase())));
       }
       else{
         matchingEmployee = newArr.filter((team) => (
-          team.role.includes(searchEmployee.value)));
+          team.role.toLowerCase().includes(searchEmployee.value.toLowerCase())));
       }
     setNewArr(matchingEmployee);
   }
@@ -54,27 +62,9 @@ const Card = (props) => {
 
   return (
     <div>
-      <div className="searchBar">
-        <h2>Search by</h2>
-        <select id="searchSelector"> 
-          <option value="name">name</option>
-          <option value="role">role</option>
-        </select>
-        <input onInput={searchCards} id="searchEmployees" type="text" />
-      </div>
-      <div className="createNewEmployeeBar">
-        <div className="newEmployee">
-          <h2>New Employee Name</h2>
-          <input id="newEmployeeName" type="text" />
-        </div>
-        <div className="newEmployee">
-          <h2>New Employee Role</h2>
-          <input id="newEmployeeRole" type="text" />
-        </div>
-        <div onClick={addNewEmployee}>
-          <button>Add new Employee</button>
-        </div>
-      </div>
+      <SearchBar searchCards={searchCards}/>
+      <TickerButton className="formButton" buttonText ="Add new Employee" clickEvent ={toggleNewEmployeeForm} />
+      {showNewEmployeeForm && <NewEmployeeForm addNewEmployee={addNewEmployee}/>}
       <div className="cards">{cardListJSX}</div>
     </div>
   );

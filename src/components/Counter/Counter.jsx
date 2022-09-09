@@ -23,13 +23,8 @@ const Counter = () => {
         <h3 className='Counter_items'>Counter</h3>
         <p className='Counter_items'>{counter}</p>
         <div className='buttonBox'>
-          <div onClick={handleDecrement}>
-          <TickerButton buttonStyle ="red" increment ="-"/>
-          </div>
-          <div onClick={handleIncrement}>
-          <TickerButton buttonStyle ="green" increment ="+"/>
-          </div>
-          
+          <TickerButton buttonStyle ="red" buttonText ="-" clickEvent={handleDecrement}/>
+          <TickerButton buttonStyle ="green" buttonText ="+" clickEvent={handleIncrement}/> 
         </div>
     </div>
   )

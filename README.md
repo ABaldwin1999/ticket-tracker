@@ -1,3 +1,5 @@
+This app will let you add or decrease the number of tickets completed by each employee. It will allow you to add an employee to the team and search for employees by name or by role title.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

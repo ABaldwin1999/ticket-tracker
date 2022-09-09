@@ -2,8 +2,8 @@ import React from 'react';
 import './TickerButton.scss';
 
 const TickerButton = (props) => {
-  const {increment, buttonStyle} = props;
-  return (<button className={buttonStyle}>{increment}</button>)
+  const {buttonText, buttonStyle, clickEvent} = props;
+  return (<button className={buttonStyle} onClick={clickEvent}>{buttonText}</button>)
 }
 
 export default TickerButton;
