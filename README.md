@@ -1,4 +1,4 @@
-This app will let you add or decrease the number of tickets completed by each employee. It will allow you to add an employee to the team and search for employees by name or by role title.
+This app will let you add or decrease the number of tickets completed by each employee. It will allow you to add an employee to the team and search for employees by name or by role title. Bug: searching reverts counter state back to original state
 
 # Getting Started with Create React App
 
